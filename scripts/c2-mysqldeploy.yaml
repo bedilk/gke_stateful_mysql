@@ -1,0 +1,14 @@
+echo "Deploying secondary MySQL cluster"
+echo "Creating namespace mysql2 for secondary cluster use"
+kubectl create namespace mysql2
+echo "..."
+echo "Create secret configuration in namespace mysql2 for secondary cluster use"
+kubectl apply -n mysql2 -f ../kubernetes/secret.yaml
+echo "..."
+echo "Create storage in namespace mysql2 for secondary cluster use"
+kubectl apply -n mysql2 -f ../kubernetes/storageclass.yaml
+echo "..."
+echo "Create MySQL statefulset in namespace mysql2 for secondary cluster use"
+kubectl apply -n mysql2 -f ../kubernetes/c2-mysql.yaml
+echo "..."
+echo "use kubectl get pods -n mysql2 --watch to view progress before moving to the next step"
